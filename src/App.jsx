@@ -8,8 +8,25 @@ function App() {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(0, 7, 4);
-        scene.background = new THREE.Color(0x87ceeb);
 
+        const background = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.height = 1024;
+
+            ctx.fillStyle = '#010c19';
+            ctx.fillRect(0, 0, 1024, 1024);
+
+            for (let i = 0; i < 400; i++) {
+                ctx.fillStyle = 'yellow';
+                ctx.beginPath();
+                ctx.arc(Math.random() * 1024, Math.random() * 1024, Math.random() * 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            return new THREE.CanvasTexture(canvas);
+        };
+
+        scene.background = background();
         const canvas = document.getElementById("myThreeJsCanvas");
         const renderer = new THREE.WebGLRenderer({
             canvas,
@@ -114,7 +131,7 @@ function App() {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('keydown', moveKey);
         };
-    }, );
+    }, []);
 
     const btnStyle = {
         width: '50px',
@@ -130,7 +147,7 @@ function App() {
         <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'fixed', top: 0, left: 0, margin: 0, padding: 0 }}>
             <canvas id="myThreeJsCanvas" style={{ display: 'block' }} />
             <div style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)', padding: '10px', borderRadius: '5px' }}>
-                Contrôles: Z/↑, S/↓, Q/←, D/→
+                Contrôles: Z/↑  S/↓  Q/←  D/→
             </div>
 
             <div style={{ position: 'absolute', bottom: '100px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
