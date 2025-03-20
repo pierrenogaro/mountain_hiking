@@ -70,6 +70,29 @@ function App() {
             }
         };
 
+        window.moveBtn = (direction) => {
+            if (!character) return;
+
+            switch(direction) {
+                case 'up':
+                    character.position.z -= moveSpeed;
+                    character.rotation.y = Math.PI;
+                    break;
+                case 'down':
+                    character.position.z += moveSpeed;
+                    character.rotation.y = 0;
+                    break;
+                case 'left':
+                    character.position.x -= moveSpeed;
+                    character.rotation.y = -Math.PI/2;
+                    break;
+                case 'right':
+                    character.position.x += moveSpeed;
+                    character.rotation.y = Math.PI/2;
+                    break;
+            }
+        };
+
         window.addEventListener('keydown', moveKey);
 
         const animate = () => {
@@ -91,13 +114,32 @@ function App() {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('keydown', moveKey);
         };
-    }, []);
+    }, );
+
+    const btnStyle = {
+        width: '50px',
+        height: '50px',
+        borderRadius: '50%',
+        fontSize: '20px',
+        border: 'none',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        margin: '2px'
+    };
 
     return (
         <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'fixed', top: 0, left: 0, margin: 0, padding: 0 }}>
             <canvas id="myThreeJsCanvas" style={{ display: 'block' }} />
-            <div style={{ position: 'absolute', bottom: '10px', left: '10px', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)', padding: '10px', borderRadius: '5px' }}>
+            <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)', padding: '10px', borderRadius: '5px' }}>
                 Contrôles: Z/↑ (avancer), S/↓ (reculer), Q/← (gauche), D/→ (droite)
+            </div>
+
+            <div style={{ position: 'absolute', bottom: '80px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
+                <button onClick={() => window.moveBtn('up')} style={btnStyle}>↑</button>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button onClick={() => window.moveBtn('left')} style={btnStyle}>←</button>
+                    <button onClick={() => window.moveBtn('down')} style={btnStyle}>↓</button>
+                    <button onClick={() => window.moveBtn('right')} style={btnStyle}>→</button>
+                </div>
             </div>
         </div>
     );
