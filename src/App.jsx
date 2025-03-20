@@ -27,8 +27,18 @@ function App() {
         const controls = new OrbitControls(camera, canvas);
         controls.update();
 
-        const loader = new GLTFLoader();
-        loader.load('/rocky_path.glb', function (gltf) {
+        const rockyLoader = new GLTFLoader();
+        rockyLoader.load('/rocky_path.glb', function (gltf) {
+            scene.add(gltf.scene);
+        }, undefined, function (error) {
+            console.error('Error loading path model:', error);
+        });
+
+        const manLoader = new GLTFLoader();
+        manLoader.load('/mr_man_walking.glb', function (gltf) {
+            gltf.scene.scale.set(0.003, 0.003, 0.003);
+
+            gltf.scene.position.set(0, 0.45, 0)
             scene.add(gltf.scene);
         }, undefined, function (error) {
             console.error('Error loading model:', error);
