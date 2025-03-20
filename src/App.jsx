@@ -133,7 +133,7 @@ function App() {
                 Contrôles: Z/↑ (avancer), S/↓ (reculer), Q/← (gauche), D/→ (droite)
             </div>
 
-            <div style={{ position: 'absolute', bottom: '80px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
+            <div style={{ position: 'absolute', bottom: '100px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
                 <button onClick={() => window.moveBtn('up')} style={btnStyle}>↑</button>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <button onClick={() => window.moveBtn('left')} style={btnStyle}>←</button>
