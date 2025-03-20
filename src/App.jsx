@@ -129,8 +129,8 @@ function App() {
     return (
         <div style={{ width: '100vw', height: '100vh', overflow: 'hidden', position: 'fixed', top: 0, left: 0, margin: 0, padding: 0 }}>
             <canvas id="myThreeJsCanvas" style={{ display: 'block' }} />
-            <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%)', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)', padding: '10px', borderRadius: '5px' }}>
-                Contrôles: Z/↑ (avancer), S/↓ (reculer), Q/← (gauche), D/→ (droite)
+            <div style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)', color: 'white', backgroundColor: 'rgba(0,0,0,0.5)', padding: '10px', borderRadius: '5px' }}>
+                Contrôles: Z/↑, S/↓, Q/←, D/→
             </div>
 
             <div style={{ position: 'absolute', bottom: '100px', left: '50%', transform: 'translateX(-50%)', textAlign: 'center' }}>
